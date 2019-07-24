@@ -9,36 +9,49 @@
   <div class="cards">
     <% @flats.each do |flat| %>
       <div class="card">
-        <img class="card-img-top" src="<%= flat.image_url %>" alt="Card image cap">
-        <div class="card-body main">
-          <div class="card-header-list">
-            <h5 class="card-title"><%= flat.name %></h5>
-            <div class="card-header-corner">
-              <div><%= link_to 'Edit', edit_flat_path(flat.id) %></div>
-              <div><%= link_to 'Delete', flat_path(flat.id), method: :delete, data: { confirm: "Are you sure?" } %></div>
+        <%= link_to flat_path(flat.id) do %>
+          <img class="card-img-top" src="<%= flat.image_url %>" alt="Card image cap">
+          <div class="card-body main">
+            <div class="card-header-list">
+              <h5 class="card-title" style="color: rgb(50,50,50)"><%= flat.name %></h5>
+              <div>
+                <%= link_to edit_flat_path(flat.id) do %>
+                  <i class="fas fa-edit icon"></i>
+                <% end %>
+                </div>
+              <div>
+                <%= link_to flat_path(flat.id), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="far fa-trash-alt icon"></i>
+                <% end %>
+              </div>
             </div>
+            <p class="card-text">$<%= flat.price_per_night %>/night</p>
           </div>
-          <p class="card-text">$<%= flat.price_per_night %>/night</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <i class="fas fa-map-marker-alt"></i><span> </span>
-            <%= flat.address %>
-          </li>
-          <li class="list-group-item card-footer">
-            <div>
-              <% i = 0 %>
-              <% while i < flat.rating %>
-                <i class="fas fa-star" style="color: #2a7a66"></i>
-                <% i += 1 %>
-              <% end %>
-            </div>
-            <div class="footer-info"><%= link_to 'More Info', flat_path(flat.id) %></div>
-          </li>
-        </ul>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="fas fa-map-marker-alt"></i><span> </span>
+              <%= flat.address %>
+            </li>
+            <li class="list-group-item card-footer">
+              <div>
+                <% i = 0 %>
+                <% while i < flat.rating %>
+                  <i class="fas fa-star" style="color: #2a7a66"></i>
+                  <% i += 1 %>
+                <% end %>
+              </div>
+            </li>
+          </ul>
+        <% end %>
       </div>
     <% end %>
-
+    <div class="card add">
+      <%= link_to new_flat_path do %>
+        <div class="add-item">
+          <h1 style="font-size: 120px"><i class="fas fa-plus"></i></h1>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 

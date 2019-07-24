@@ -1,0 +1,19 @@
+.card.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.add-item {
+  display: flex;
+  align-items: center;
+  padding: 80px;
+  border-radius: 5px;
+  color: rgba(100,100,100,0.7);
+}
+
+.add-item:hover {
+  color: rgba(100,100,100,0.9);
+}
