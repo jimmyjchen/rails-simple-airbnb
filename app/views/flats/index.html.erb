@@ -1,35 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div class="banner">
+  <div class="banner-container">
+    <img class="img-banner" style="object-fit:cover;vertical-align:bottom" alt="" decoding="auto" sizes="100vw" src="https://a0.muscache.com/4ea/air/v2/pictures/b7ca8f0c-030a-401a-a3a6-fc3d50f3425f.jpg?t=c:3w-h2-gw,r:w3100-h2074-sfit,e:fjpg-c80" srcset="https://a0.muscache.com/4ea/air/v2/pictures/381cc337-5000-43e0-8685-32efdf0d978a.jpg?t=c:3w-h2-gw,r:w775-h518-sfit,e:fjpg-c80 775w, https://a0.muscache.com/4ea/air/v2/pictures/b7ca8f0c-030a-401a-a3a6-fc3d50f3425f.jpg?t=c:3w-h2-gw,r:w1550-h1037-sfit,e:fjpg-c80 1550w, https://a0.muscache.com/4ea/air/v2/pictures/b7ca8f0c-030a-401a-a3a6-fc3d50f3425f.jpg?t=c:3w-h2-gw,r:w3100-h2074-sfit,e:fjpg-c80 3100w">
+  </div>
+</div>
 
-<h1>Flats</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Description</th>
-      <th>Price per night</th>
-      <th>Number of guests</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="main-container">
+  <div class="cards">
     <% @flats.each do |flat| %>
-      <tr>
-        <td><%= flat.name %></td>
-        <td><%= flat.address %></td>
-        <td><%= flat.description %></td>
-        <td><%= flat.price_per_night %></td>
-        <td><%= flat.number_of_guests %></td>
-        <td><%= link_to 'Show', flat %></td>
-        <td><%= link_to 'Edit', edit_flat_path(flat) %></td>
-        <td><%= link_to 'Destroy', flat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="card">
+        <img class="card-img-top" src="<%= flat.image_url %>" alt="Card image cap">
+        <div class="card-body main">
+          <div class="card-header-list">
+            <h5 class="card-title"><%= flat.name %></h5>
+            <div class="card-header-corner">
+              <div><%= link_to 'Edit', edit_flat_path(flat.id) %></div>
+              <div><%= link_to 'Delete', flat_path(flat.id), method: :delete, data: { confirm: "Are you sure?" } %></div>
+            </div>
+          </div>
+          <p class="card-text">$<%= flat.price_per_night %>/night</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <i class="fas fa-map-marker-alt"></i><span> </span>
+            <%= flat.address %>
+          </li>
+          <li class="list-group-item card-footer">
+            <div>
+              <% i = 0 %>
+              <% while i < flat.rating %>
+                <i class="fas fa-star" style="color: #2a7a66"></i>
+                <% i += 1 %>
+              <% end %>
+            </div>
+            <div class="footer-info"><%= link_to 'More Info', flat_path(flat.id) %></div>
+          </li>
+        </ul>
+      </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+  </div>
+</div>
 
-<%= link_to 'New Flat', new_flat_path %>
+<div class="footer">
+  <div class="list-icons">
+    <a href="#"><i class="fab fa-facebook-square"></i></a>
+    <a href="https://github.com/jimmyjchen"><i class="fab fa-github-square"></i></a>
+    <a href="https://linkedin.com/in/chenjimmy"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-weixin"></i></a>
+  </div>
+  <p>An Airbnb style clone, coded with ❤️ at Le Wagon</p>
+</div>
